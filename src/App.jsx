@@ -2,7 +2,8 @@
 import React, { useRef, useEffect } from "react";
 import Header from "./Header.jsx";
 import VideoPlayer from "./VideoPlayer.jsx";
-import "./general.css";
+import "./index.css";        // ✅ Tailwind CSS (make sure this is imported)
+import "./general.css";      // Optional: your existing styles
 import "./VideoPlayer.css";
 import "./SocialButtons.css";
 
@@ -33,10 +34,22 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center">
+      {/* ✅ Tailwind Test Section */}
+      <section className="w-full bg-gray-800 py-8 text-center shadow-lg mb-6">
+        <h1 className="text-4xl font-bold text-indigo-400 mb-2">
+          🚀 TailwindCSS is Working!
+        </h1>
+        <p className="text-gray-300">
+          If you can see this styled section, Tailwind is fully configured.
+        </p>
+      </section>
+
+      {/* Header Component */}
       <Header title="XPREX" />
 
-      <div className="video-list">
+      {/* Video List */}
+      <div className="video-list flex flex-col gap-4 w-full max-w-md">
         {videoList.map((video, index) => (
           <VideoPlayer
             key={video.id}
