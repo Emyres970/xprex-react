@@ -2,12 +2,8 @@
 import React, { useRef, useEffect } from "react";
 import Header from "./Header.jsx";
 import VideoPlayer from "./VideoPlayer.jsx";
-import "./index.css";        // ✅ Tailwind CSS (make sure this is imported)
-import "./general.css";      // Optional: your existing styles
-import "./VideoPlayer.css";
-import "./SocialButtons.css";
 
-// Video list using public folder paths
+// Video list (public folder videos)
 const videoList = [
   { id: 1, src: "/assets/videos/video1.mp4" },
   { id: 2, src: "/assets/videos/video2.mp4" },
@@ -24,38 +20,32 @@ const videoList = [
 export default function App() {
   const firstVideoRef = useRef(null);
 
-  // Auto-play first video
+  // Autoplay the first video
   useEffect(() => {
     if (firstVideoRef.current) {
       firstVideoRef.current.play().catch(() => {
-        console.log("Autoplay blocked; user interaction needed.");
+        console.warn("Autoplay blocked; user interaction needed.");
       });
     }
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center">
-      {/* ✅ Tailwind Test Section */}
-      <section className="w-full bg-gray-800 py-8 text-center shadow-lg mb-6">
-        <h1 className="text-4xl font-bold text-indigo-400 mb-2">
-          🚀 TailwindCSS is Working!
-        </h1>
-        <p className="text-gray-300">
-          If you can see this styled section, Tailwind is fully configured.
-        </p>
-      </section>
-
-      {/* Header Component */}
+    <div className="min-h-screen bg-black text-white flex flex-col">
+      {/* Header */}
       <Header title="XPREX" />
 
-      {/* Video List */}
-      <div className="video-list flex flex-col gap-4 w-full max-w-md">
+      {/* Video Feed */}
+      <div className="flex-1 overflow-y-scroll snap-y snap-mandatory">
         {videoList.map((video, index) => (
-          <VideoPlayer
+          <div
             key={video.id}
-            src={video.src}
-            ref={index === 0 ? firstVideoRef : null}
-          />
+            className="h-screen snap-start flex items-center justify-center bg-black"
+          >
+            <VideoPlayer
+              src={video.src}
+              ref={index === 0 ? firstVideoRef : null}
+            />
+          </div>
         ))}
       </div>
     </div>

@@ -1,12 +1,13 @@
 // src/Header.jsx
 import React from "react";
-import "./Header.css";
 
 export default function Header({ title }) {
   return (
-    <header className="transparent-header">
-      <img src="/assets/logo.png" alt={title} className="logo" />
-      <h1 className="header-title">{title}</h1>
+    <header
+      className="fixed top-0 left-0 z-50 px-4 py-2 text-white text-lg font-semibold 
+                 bg-transparent select-none"
+    >
+      <h1 className="tracking-wide">{title}</h1>
     </header>
   );
 }
